@@ -1,6 +1,7 @@
 'use strict';
 require('dotenv').load({
-  silent: process.env.NODE_ENV === 'production', // don't log missing .env
+  // silent: process.env.NODE_ENV === 'production',
+  silent: process.env.NODE_ENV === 'development', // don't log missing .env
 });
 
 const express = require('express');
@@ -23,7 +24,7 @@ app.use(middleware['404']);
 // error handlers
 app.use(middleware['error-handler']);
 
-const debug = require('debug')('express-template:server');
+const debug = require('debug')('trail-trakcer:server');
 const http = require('http');
 
 /**
@@ -39,11 +40,11 @@ const normalizePort = (val) => {
  * Get port from environment and store in Express.
  */
 
-let devPort = +('GA'.split('').reduce((p, c) =>
- p + c.charCodeAt().toString(16), '')
-);
+// let devPort = +('GA'.split('').reduce((p, c) =>
+//  p + c.charCodeAt().toString(16), '')
+// );
 
-const port = normalizePort(process.env.PORT || devPort);
+const port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
 
 /**

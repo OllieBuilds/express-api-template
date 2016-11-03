@@ -17,5 +17,10 @@ module.exports = require('lib/wiring/routes')
 .patch('/change-password/:id', 'users#changepw')
 .resources('users', { only: ['index', 'show'] })
 
-// all routes created
+.get('/trails', 'trails#index')
+.post('/trails', 'trails#create')
+.get('/trails/:id', 'trails#showById')
+.get('/trails/find/name', 'trails#showByName')
+.delete('/trails/:id', 'trails#destroy')
+.post('/trails/ratings/:id', 'trails#updateRating')
 ;
