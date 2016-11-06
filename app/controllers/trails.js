@@ -10,6 +10,12 @@ const index = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const indexTen = (req, res, next) => {
+  Trail.find().limit(10)
+    .then(trails => res.json({ trails }))
+    .catch(err => next( err ));
+};
+
 const showById = (req, res, next) => {
   console.log(req.params.id+"console logging id");
   Trail.findById(req.params.id)
@@ -18,7 +24,7 @@ const showById = (req, res, next) => {
 };
 
 const create = (req, res, next) => {
-  let trail = req.body.trail;
+  let trail = req.body.places;
   Trail.create(trail)
     .then(trail => res.json({ trail }))
     .catch(err => next(err));
@@ -53,7 +59,6 @@ const updateRating = (req, res, next) => {
       if (!trail) {
         return next();
       }
-      console.log(trail.rating.length);
       return trail.update({$push: {rating: req.body.rating}})
         .then(() => res.sendStatus(200));
     })
@@ -62,6 +67,7 @@ const updateRating = (req, res, next) => {
 
 module.exports = controller({
   index,
+  indexTen,
   create,
   showById,
   showByName,

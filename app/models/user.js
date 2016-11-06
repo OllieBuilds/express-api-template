@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  trails: [{type: String}],
   passwordDigest: String,
 }, {
   timestamps: true,

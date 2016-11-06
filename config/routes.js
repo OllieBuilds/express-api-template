@@ -15,6 +15,7 @@ module.exports = require('lib/wiring/routes')
 .post('/sign-in', 'users#signin')
 .delete('/sign-out/:id', 'users#signout')
 .patch('/change-password/:id', 'users#changepw')
+.post('/trails/:id', 'users#addTrail')
 .resources('users', { only: ['index', 'show'] })
 
 .get('/trails', 'trails#index')
@@ -23,4 +24,6 @@ module.exports = require('lib/wiring/routes')
 .get('/trails/find/name', 'trails#showByName')
 .delete('/trails/:id', 'trails#destroy')
 .post('/trails/ratings/:id', 'trails#updateRating')
+
+.get('/home', 'trails#indexTen')
 ;

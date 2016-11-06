@@ -111,6 +111,17 @@ const changepw = (req, res, next) => {
   ).catch(makeErrorHandler(res, next));
 };
 
+const addTrail = (req, res, next) => {
+  User.findOne({
+    _id: req.params.id,
+    token: req.currentUser.token,
+  }).then(user => {
+    return user.update({$push: {trails: req.body.trail}})
+    .then(() => res.sendStatus(200));
+  })
+  .catch(err => next(err));
+};
+
 module.exports = controller({
   index,
   show,
@@ -118,6 +129,7 @@ module.exports = controller({
   signin,
   signout,
   changepw,
+  addTrail,
 }, { before: [
   { method: authenticate, except: ['signup', 'signin'] },
 ], });
