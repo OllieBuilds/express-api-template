@@ -24,7 +24,7 @@ app.use(middleware['404']);
 // error handlers
 app.use(middleware['error-handler']);
 
-const debug = require('debug')('trail-trakcer:server');
+const debug = require('debug')('trail-tracker:server');
 const http = require('http');
 
 /**
@@ -44,7 +44,7 @@ const normalizePort = (val) => {
 //  p + c.charCodeAt().toString(16), '')
 // );
 
-const port = normalizePort(process.env.PORT || 3000);
+const port = normalizePort(process.env.PORT ||8080);
 app.set('port', port);
 
 /**
