@@ -25,5 +25,7 @@ module.exports = require('lib/wiring/routes')
 .delete('/trails/:id', 'trails#destroy')
 .post('/trails/ratings/:id', 'trails#updateRating')
 
+.get('/states', 'states#index')
+
 .get('/home', 'trails#indexTen')
 ;
