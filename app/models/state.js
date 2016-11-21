@@ -8,10 +8,10 @@ const stateSchema = new mongoose.Schema({
     type: String,
     required: true
     },
-  trails: {
-    type: Schema.Types.ObjectId,
-    ref: 'Trail'
-    }
+  trails: [
+    {type: Schema.Types.ObjectId,
+    ref: 'Trail'}
+    ]
   },
   {
   toJSON: { virtuals: true },

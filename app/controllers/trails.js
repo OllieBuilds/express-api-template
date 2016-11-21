@@ -39,6 +39,23 @@ const showByName = (req, res, next) => {
   .catch(err => next(err));
 };
 
+const getByState = (req, res, next) => {
+  let ids = [];
+  Trail.find(
+    { 'state': req.body.state }
+  ).select('_id')
+  .then( state => state.forEach(function(u) {
+    ids.push(u._id);
+    console.log(ids);
+  }))
+  // forEach(function(u) { result.push(u.text) })
+  .then( state => state ? res.json({ state }) : next())
+  .then( state => console.log(state.state+"state"))
+  // .then( state => state
+  // )
+  .catch(err => next(err));
+};
+
 const destroy = (req, res, next) => {
   // let search = {id: req.params.id};
   Trail.findById(req.params.id)
@@ -73,4 +90,5 @@ module.exports = controller({
   showByName,
   destroy,
   updateRating,
+  getByState,
 });
