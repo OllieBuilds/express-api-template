@@ -24,7 +24,7 @@ module.exports = require('lib/wiring/routes')
 .get('/trails/find/name', 'trails#showByName')
 .delete('/trails/:id', 'trails#destroy')
 .post('/trails/ratings/:id', 'trails#updateRating')
-.get('/findstate', 'trails#getByState')
+.get('/state/:state', 'trails#getByState')
 
 .get('/states', 'states#index')
 .post('/states', 'states#create')

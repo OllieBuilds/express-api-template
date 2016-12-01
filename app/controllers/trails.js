@@ -40,19 +40,14 @@ const showByName = (req, res, next) => {
 };
 
 const getByState = (req, res, next) => {
-  let ids = [];
+  let trails = [];
   Trail.find(
-    { 'state': req.body.state }
-  ).select('_id')
-  .then( state => state.forEach(function(u) {
-    ids.push(u._id);
-    console.log(ids);
-  }))
-  // forEach(function(u) { result.push(u.text) })
-  .then( state => state ? res.json({ state }) : next())
-  .then( state => console.log(state.state+"state"))
-  // .then( state => state
-  // )
+    { 'state': req.params.state }
+  )
+  // .then( state => state.forEach(function(data) {
+  //   trails.push(data);
+  // }))
+  .then( trails => res.json({ trails }))
   .catch(err => next(err));
 };
 
