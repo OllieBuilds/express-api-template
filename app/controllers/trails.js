@@ -39,8 +39,15 @@ const showByName = (req, res, next) => {
   .catch(err => next(err));
 };
 
+const getByState = (req, res, next) => {
+  Trail.find(
+    { 'state': req.params.state }
+  )
+  .then( trails => res.json({ trails }))
+  .catch(err => next(err));
+};
+
 const destroy = (req, res, next) => {
-  // let search = {id: req.params.id};
   Trail.findById(req.params.id)
     .then(trail => {
       if(!trail) {
@@ -73,4 +80,5 @@ module.exports = controller({
   showByName,
   destroy,
   updateRating,
+  getByState,
 });
