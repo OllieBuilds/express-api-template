@@ -40,19 +40,14 @@ const showByName = (req, res, next) => {
 };
 
 const getByState = (req, res, next) => {
-  let trails = [];
   Trail.find(
     { 'state': req.params.state }
   )
-  // .then( state => state.forEach(function(data) {
-  //   trails.push(data);
-  // }))
   .then( trails => res.json({ trails }))
   .catch(err => next(err));
 };
 
 const destroy = (req, res, next) => {
-  // let search = {id: req.params.id};
   Trail.findById(req.params.id)
     .then(trail => {
       if(!trail) {
